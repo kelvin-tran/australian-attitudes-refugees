@@ -36,13 +36,13 @@
     .land-boundary {
       fill: #ccc;
       fill-opacity: 0.8;
-      stroke: black;
+      stroke: gray;
       stroke-width: 1;
     }
     .div-boundary {
       fill: none;
       fill-opacity: 0.8;
-      stroke: black;
+      stroke: gray;
       stroke-width: 1;
     }
     </style>
@@ -92,7 +92,7 @@
       var projection = d3.geo.satellite()
           .scale(4500)
           .distance(1.5)
-          .rotate([-147.00, 38.5, 25])
+          .rotate([-147.00, 38.2, 25])
           //.center([-2, 5])
           .tilt(45)
           .clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6);
