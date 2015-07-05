@@ -109,12 +109,22 @@
           .attr("class", "graticule")
           .attr("d", path);
       
-      d3.json("https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/world-50m.json", function(world) {
-        svg.insert("path", ".graticule")
-            .datum(topojson.feature(world, world.objects.land))
-            .attr("class", "land-boundary")
-            .attr("d", path);
-      });
+      //d3.json("https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/world-50m.json", function(world) {
+      //  svg.insert("path", ".graticule")
+      //      .datum(topojson.feature(world, world.objects.land))
+      //      .attr("class", "land-boundary")
+      //      .attr("d", path);
+      //});
+     
+			d3.json("https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/t_aus_bound.json", function(aus) { 
+			  svg.append("g")
+			      .attr("class", "counties")
+			    .selectAll("path")
+			      .data(topojson.feature(aus, aus.objects.aus_bound).features)
+			    .enter().append("path")
+			      .attr("class", "worked"; })
+			      .attr("d", path);
+			});
       
       d3.json("https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/t_aus_bound.json", function(aus) {
         svg.insert("path", ".graticule")
