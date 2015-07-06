@@ -19,9 +19,12 @@
       ga('send', 'pageview');
     </script>
     <style>
-    body {
-      background: #fcfcfa;
-    }
+
+		.background {
+		  fill: none;
+		  pointer-events: all;
+		}
+
     .path {
       fill: none;
       stroke-width: 1.5;
@@ -105,7 +108,8 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script>
       var width = 648,
-          height = 621;
+          height = 621,
+          centered;
 
 			var rateById = d3.map();
 			
@@ -129,11 +133,19 @@
       var svg = d3.select("#map").append("svg")
           .attr("width", width)
           .attr("height", height);
+          
+			svg.append("rect")
+					.attr("class", "background")
+					.attr("width", width)
+					.attr("height", height)
+					.on("click", clicked);
       
       svg.append("path")
           .datum(graticule)
           .attr("class", "graticule")
           .attr("d", path);
+          
+			var g = svg.append("g");
       
 			queue()
 					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/t_aus_bound.json")
@@ -143,7 +155,7 @@
 			function ready(error, aus) {
 				if (error) throw error;
 			
-				svg.append("g")
+				g.append("g")
 						.attr("class", "divisions")
 					.selectAll("path")
 						.data(topojson.feature(aus, aus.objects.aus_bound).features)
@@ -152,7 +164,33 @@
 			      	console.log(rateById.get(d.id));
 			      	return quantize(rateById.get(d.id)); 
 						})
-						.attr("d", path);
+						.attr("d", path)
+						.on("click", clicked);
+			}
+			
+			function clicked(d) {
+			  var x, y, k;
+			
+			  if (d && centered !== d) {
+			    var centroid = path.centroid(d);
+			    x = centroid[0];
+			    y = centroid[1];
+			    k = 4;
+			    centered = d;
+			  } else {
+			    x = width / 2;
+			    y = height / 2;
+			    k = 1;
+			    centered = null;
+			  }
+			
+			  g.selectAll("path")
+			      .classed("active", centered && function(d) { return d === centered; });
+			
+			  g.transition()
+			      .duration(750)
+			      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+			      .style("stroke-width", 1.5 / k + "px");
 			}
       
       d3.select(self.frameElement).style("height", height + "px");
