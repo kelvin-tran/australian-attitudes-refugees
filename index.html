@@ -178,8 +178,6 @@
 			var legend = d3.select('#legend')
 			  .append('ul')
 			    .attr('class', 'list-inline');
-			    
-			d3.select(window).on('resize', resize);
       
 			queue()
 					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/t_aus_bound.json")
