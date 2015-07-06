@@ -207,15 +207,14 @@
 						.data(topojson.feature(aus, aus.objects.aus_bound).features)
 					.enter().append("path")
 						.attr("class", function(d) {
-			      	console.log(rateById.get(d.id));
-			      	return quantize(rateById.get(d.id)); 
+							return quantize(rateById.get(d.id)); 
 						})
 						.attr("d", path)
 						.on("click", clicked);
 						
 				var colors = d3.scale.quantize()
-					.domain([d3.min(data, function(d) { return rateById.get(d.id); }), d3.max(data, function(d) { return rateById.get(d.id); })])
-    			.range(	[
+					.domain([d3.min(aus, function(d) { return rateById.get(d.id); }), d3.max(aus, function(d) { return rateById.get(d.id); })])
+					.range(	[
 							"rgb(247,251,255)",
 							"rgb(222,235,247)",
 							"rgb(198,219,239)",
