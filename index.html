@@ -108,8 +108,7 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script>
       var width = 648,
-          height = 621,
-          centered;
+          height = 621;
 
 			var rateById = d3.map();
 			
@@ -129,23 +128,30 @@
       
       var path = d3.geo.path()
           .projection(projection);
+          
+			var zoom = d3.behavior.zoom()
+			    .translate(projection.translate())
+			    .scale(projection.scale())
+			    .scaleExtent([height, 8 * height])
+			    .on("zoom", zoomed);
       
       var svg = d3.select("#map").append("svg")
           .attr("width", width)
           .attr("height", height);
           
-			svg.append("rect")
+			var g = svg.append("g")
+					.call(zoom);
+
+			g.append("rect")
 					.attr("class", "background")
 					.attr("width", width)
 					.attr("height", height)
 					.on("click", clicked);
       
-      svg.append("path")
+      g.append("path")
           .datum(graticule)
           .attr("class", "graticule")
           .attr("d", path);
-          
-			var g = svg.append("g");
       
 			queue()
 					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/t_aus_bound.json")
@@ -169,30 +175,26 @@
 			}
 			
 			function clicked(d) {
-			  var x, y, k;
+			  var centroid = path.centroid(d),
+			      translate = projection.translate();
 			
-			  if (d && centered !== d) {
-			    var centroid = path.centroid(d);
-			    x = centroid[0];
-			    y = centroid[1];
-			    k = 4;
-			    centered = d;
-			  } else {
-			    x = width / 2;
-			    y = height / 2;
-			    k = 1;
-			    centered = null;
-			  }
+			  projection.translate([
+			    translate[0] - centroid[0] + width / 2,
+			    translate[1] - centroid[1] + height / 2
+			  ]);
 			
-			  g.selectAll("path")
-			      .classed("active", centered && function(d) { return d === centered; });
+			  zoom.translate(projection.translate());
 			
-			  g.transition()
-			      .duration(750)
-			      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-			      .style("stroke-width", 1.5 / k + "px");
+			  g.selectAll("path").transition()
+			      .duration(700)
+			      .attr("d", path);
 			}
-      
+			
+			function zoomed() {
+			  projection.translate(d3.event.translate).scale(d3.event.scale);
+			  g.selectAll("path").attr("d", path);
+			}
+
       d3.select(self.frameElement).style("height", height + "px");
     </script>
   </body>
