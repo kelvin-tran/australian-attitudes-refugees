@@ -124,7 +124,8 @@
           .distance(1.5)
           .rotate([-138, 31.679999999999996, 20])
           .tilt(30)
-          .clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6)
+          //.clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6)
+          .clipAngle(90)
           ;
       
       var path = d3.geo.path()
@@ -175,24 +176,24 @@
 			}
 
 			function clicked(d) {
-			  var centroid = path.centroid(d),
-			      translate = projection.translate();
+				var centroid = path.centroid(d),
+						translate = projection.translate();
 			
-			  projection.translate([
-			    translate[0] - centroid[0] + width / 2,
-			    translate[1] - centroid[1] + height / 2
+				projection.translate([
+					translate[0] - centroid[0] + width / 2,
+					translate[1] - centroid[1] + height / 2
 			  ]);
 			
-			  zoom.translate(projection.translate());
+				zoom.translate(projection.translate());
 			
-			  g.selectAll("path").transition()
-			      .duration(900)
-			      .attr("d", path);
+				g.selectAll("path").transition()
+						.duration(900)
+						.attr("d", path);
 			}
 			
 			function zoomed() {
-			  projection.translate(d3.event.translate).scale(d3.event.scale);
-			  g.selectAll("path").attr("d", path);
+				projection.translate(d3.event.translate).scale(d3.event.scale);
+				g.selectAll("path").attr("d", path);
 			}
 			
       d3.select(self.frameElement).style("height", height + "px");
