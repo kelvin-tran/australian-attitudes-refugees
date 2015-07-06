@@ -117,12 +117,6 @@
 				.range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
       
       var graticule = d3.geo.graticule()
-          .scale(885)
-          .distance(1.5)
-          .rotate([-138, 31.679999999999996, 20])
-          .tilt(30)
-          //.clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6)
-          .clipAngle(90)
           .step([10, 10]);
       
       var projection = d3.geo.satellite()
@@ -131,7 +125,7 @@
           .rotate([-138, 31.679999999999996, 20])
           .tilt(30)
           //.clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6)
-          .clipAngle(90)
+          .clipAngle(45)
           ;
       
       var path = d3.geo.path()
