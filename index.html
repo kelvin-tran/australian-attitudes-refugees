@@ -149,10 +149,10 @@
 					.attr("height", height)
 					.on("click", clicked);
       
-      //g.append("path")
-      //    .datum(graticule)
-      //    .attr("class", "graticule")
-      //    .attr("d", path);
+      g.append("path")
+          .datum(graticule)
+          .attr("class", "graticule")
+          .attr("d", path);
       
 			queue()
 					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/t_aus_bound.json")
@@ -161,6 +161,27 @@
     	
 			function ready(error, aus) {
 				if (error) throw error;
+				
+				function clicked(d) {
+				  var centroid = path.centroid(d),
+				      translate = projection.translate();
+				
+				  projection.translate([
+				    translate[0] - centroid[0] + width / 2,
+				    translate[1] - centroid[1] + height / 2
+				  ]);
+				
+				  zoom.translate(projection.translate());
+				
+				  g.selectAll("path").transition()
+				      .duration(900)
+				      .attr("d", path);
+				}
+				
+				function zoomed() {
+				  projection.translate(d3.event.translate).scale(d3.event.scale);
+				  g.selectAll("path").attr("d", path);
+				}
 			
 				g.append("g")
 						.attr("class", "divisions")
@@ -173,27 +194,6 @@
 						})
 						.attr("d", path)
 						.on("click", clicked);
-			}
-			
-			function clicked(d) {
-			  var centroid = path.centroid(d),
-			      translate = projection.translate();
-			
-			  projection.translate([
-			    translate[0] - centroid[0] + width / 2,
-			    translate[1] - centroid[1] + height / 2
-			  ]);
-			
-			  zoom.translate(projection.translate());
-			
-			  g.selectAll("path").transition()
-			      .duration(900)
-			      .attr("d", path);
-			}
-			
-			function zoomed() {
-			  projection.translate(d3.event.translate).scale(d3.event.scale);
-			  g.selectAll("path").attr("d", path);
 			}
 
       d3.select(self.frameElement).style("height", height + "px");
