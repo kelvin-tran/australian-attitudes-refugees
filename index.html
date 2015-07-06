@@ -132,7 +132,7 @@
 			var zoom = d3.behavior.zoom()
 			    .translate(projection.translate())
 			    .scale(projection.scale())
-			    .scaleExtent([height, 8 * height])
+			    .scaleExtent([height, 12 * height])
 			    .on("zoom", zoomed);
       
       var svg = d3.select("#map").append("svg")
@@ -186,7 +186,7 @@
 			  zoom.translate(projection.translate());
 			
 			  g.selectAll("path").transition()
-			      .duration(700)
+			      .duration(900)
 			      .attr("d", path);
 			}
 			
