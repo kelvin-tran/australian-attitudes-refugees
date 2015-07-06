@@ -147,11 +147,6 @@
     	.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/t_aus_bound.json")
     	.defer(d3.csv, "https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/chloro.csv", function(d) { rateById.set(d.division, +d.strongly_agree); })
     	.await(ready);
-
-		queue()
-	    .defer(d3.json, "/mbostock/raw/4090846/us.json")
-	    .defer(d3.tsv, "unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
-	    .await(ready);
     	
 		function ready(error, aus) {
 		  if (error) throw error;
