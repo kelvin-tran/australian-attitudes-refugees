@@ -120,10 +120,10 @@
           .step([10, 10]);
       
       var projection = d3.geo.satellite()
-          .scale(4500)
+          .scale(885)
           .distance(1.5)
-          .rotate([-147.00, 38.2, 25])
-          .tilt(45)
+          .rotate([-135.36000000000004, 31.679999999999996, 20])
+          .tilt(30)
           .clipAngle(Math.acos(1 / 1.1) * 180 / Math.PI - 1e-6);
       
       var path = d3.geo.path()
@@ -132,7 +132,7 @@
 			var zoom = d3.behavior.zoom()
 			    .translate(projection.translate())
 			    .scale(projection.scale())
-			    .scaleExtent([height, 12 * height])
+			    .scaleExtent([height, 14 * height])
 			    .on("zoom", zoomed);
       
       var svg = d3.select("#map").append("svg")
