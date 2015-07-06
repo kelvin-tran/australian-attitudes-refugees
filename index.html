@@ -234,7 +234,7 @@
 						.style('border-top-color', String)
 						.text(function(d) {
 						  var r = colors.invertExtent(d) ;
-						  return r + '%';
+						  return r[0] + '%';
 						  //return formats.percent(r[0]);
 						});
 			}
