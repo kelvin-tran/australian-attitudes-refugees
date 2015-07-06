@@ -149,10 +149,10 @@
 					.attr("height", height)
 					.on("click", clicked);
       
-      g.append("path")
-          .datum(graticule)
-          .attr("class", "graticule")
-          .attr("d", path);
+      //g.append("path")
+      //    .datum(graticule)
+      //    .attr("class", "graticule")
+      //    .attr("d", path);
       
 			queue()
 					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/electoral-maps/master/t_aus_bound.json")
