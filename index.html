@@ -213,9 +213,7 @@
 						.on("click", clicked);
 						
 				var colors = d3.scale.quantize()
-					.domain(
-						d3.extent(aus, function(d) { return rateById.get(d.id); })
-					)
+					.domain([0, 54.5])
 					.range(	[
 							"rgb(247,251,255)",
 							"rgb(222,235,247)",
