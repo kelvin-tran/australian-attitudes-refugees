@@ -21,8 +21,8 @@
     <style>
 
 		.background {
-		  fill: none;
-		  pointer-events: all;
+			fill: none;
+			pointer-events: all;
 		}
 
     .path {
@@ -126,6 +126,10 @@
     <script>
       var width = 500,
           height = 500;
+          
+			var formats = {
+					percent: d3.format('%')
+			};
 
 			var rateById = d3.map();
 			
