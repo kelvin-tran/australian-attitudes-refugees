@@ -1,6 +1,8 @@
 # Attitudes of Australians towards refugees, by electorate
 Choropleths based on Australian electoral divisions and Australian Election Study data
 
+See the results: http://kelvin-tran.github.io/australian-attitudes-refugees/
+
 First obtain the shapefile from the AEC website.  Convert shapefile into GeoJSON format.
 ```
 ogr2ogr \
