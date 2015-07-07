@@ -145,7 +145,8 @@
 					percent: d3.format('%')
 			};
 
-			var rateById = d3.map();
+			var rateById = d3.map()
+					response_values = [];
 			
 			var quantize = d3.scale.quantize()
 				.domain([0, 54.5])
@@ -195,8 +196,13 @@
       
 			queue()
 					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/t_aus_bound.json")
-					.defer(d3.csv, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/chloro.csv", function(d) { rateById.set(d.id, +d.strongly_agree); })
+					.defer(d3.csv, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/chloro.csv", function(d) { 
+						rateById.set(d.id, +d.strongly_agree); 
+						response_values.push(d.strongly_agree);
+					})
 					.await(ready);
+			
+			console.log(response_values)
     	
 			function ready(error, aus) {
 				if (error) throw error;
@@ -211,12 +217,6 @@
 						})
 						.attr("d", path)
 						.on("click", clicked);
-				
-				var response_values = Object.keys(rateById).map(function(key){
-    			return rateById[key];
-					});
-				
-				console.log(response_values);
 						
 				var colors = d3.scale.quantize()
 					.domain(
