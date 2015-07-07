@@ -206,7 +206,7 @@
 			    .attr('class', 'list-inline');
       
 			queue()
-					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/australian-attitudes-refugees/master/t_aus_bound.json")
+					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/australian-attitudes-refugees/master/electorates_bound.json")
 					.defer(d3.csv, "https://raw.githubusercontent.com/kelvin-tran/australian-attitudes-refugees/master/refugees.csv", function(d) { 
 						rateById.set(d.id, +d.strongly_agree); 
 						response_values.push(+d.strongly_agree);
@@ -224,7 +224,7 @@
 				g.append("g")
 						.attr("class", "divisions")
 					.selectAll("path")
-						.data(topojson.feature(aus, aus.objects.fed_bound).features)
+						.data(topojson.feature(aus, aus.objects.aus_bound).features)
 					.enter().append("path")
 						.attr("class", function(d) {
 							return quantize(rateById.get(d.id)); 
