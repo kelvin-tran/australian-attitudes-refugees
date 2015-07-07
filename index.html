@@ -198,7 +198,7 @@
 					.defer(d3.csv, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/chloro.csv", function(d) { rateById.set(d.id, +d.strongly_agree); })
 					.await(ready);
     	
-			function ready(error, aus, data) {
+			function ready(error, aus) {
 				if (error) throw error;
 			
 				g.append("g")
@@ -213,8 +213,11 @@
 						.on("click", clicked);
 						
 				var colors = d3.scale.quantize()
+					.data(topojson.feature(aus, aus.objects.aus_bound).features)
 					.domain(
-						[0, 54.5]
+					//	[0, 54.5]
+						[d3.min(data, function(d) { return rateById.get(d.id); }), 
+						d3.max(data, function(d) { return rateById.get(d.id); })]
 					)
 					.range(	[
 							"rgb(247,251,255)",
@@ -227,8 +230,6 @@
 							"rgb(8,81,156)",
 							"rgb(8,48,107)"
 					]);
-				
-				console.log(data);
 				
 				var keys = legend.selectAll('li.key')
 						.data(colors.range());
