@@ -149,7 +149,7 @@
 					response_values = [];
 			
 			var quantize = d3.scale.quantize()
-				.domain([0, 54.5])
+				//.domain([0, 54.5])
 				.range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
       
       var graticule = d3.geo.graticule()
@@ -201,11 +201,14 @@
 						response_values.push(+d.strongly_agree);
 					})
 					.await(ready);
-			
-			console.log(response_values)
     	
 			function ready(error, aus) {
 				if (error) throw error;
+				
+				quantize.domain([
+					d3.min(response_values),
+					d3.max(response_values)
+				]);
 			
 				g.append("g")
 						.attr("class", "divisions")
@@ -219,11 +222,10 @@
 						.on("click", clicked);
 						
 				var colors = d3.scale.quantize()
-					.domain(
-					//	[0, 54.5]
-						[d3.min(response_values), 
-						d3.max(response_values)]
-					)
+					.domain([
+						d3.min(response_values),
+						d3.max(response_values)
+					])
 					.range(	[
 							"rgb(247,251,255)",
 							"rgb(222,235,247)",
