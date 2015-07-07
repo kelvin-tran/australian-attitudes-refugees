@@ -198,7 +198,7 @@
 					.defer(d3.csv, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/chloro.csv", function(d) { rateById.set(d.id, +d.strongly_agree); })
 					.await(ready);
     	
-			function ready(error, aus) {
+			function ready(error, aus, data) {
 				if (error) throw error;
 			
 				g.append("g")
@@ -214,10 +214,7 @@
 						
 				var colors = d3.scale.quantize()
 					.domain(
-					//	[0, 54.5]
-						d3.extent(d3.values(aus), function(d) {
-							console.log(rateById.get(d.id))
-							return rateById.get(d.id); 
+						[0, 54.5]
 						})
 					)
 					.range(	[
