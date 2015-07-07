@@ -224,7 +224,7 @@
 				g.append("g")
 						.attr("class", "divisions")
 					.selectAll("path")
-						.data(topojson.feature(aus, aus.objects.aus_bound).features)
+						.data(topojson.feature(aus, aus.objects.fed_bound).features)
 					.enter().append("path")
 						.attr("class", function(d) {
 							return quantize(rateById.get(d.id)); 
