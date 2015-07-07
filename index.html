@@ -211,9 +211,10 @@
 						rateById.set(d.id, +d.strongly_agree); 
 						response_values.push(+d.strongly_agree);
 					})
+					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/australian-attitudes-refugees/master/places.json")
 					.await(ready);
     	
-			function ready(error, aus, responses) {
+			function ready(error, aus, responses, name_data) {
 				if (error) throw error;
 				
 				quantize.domain([
