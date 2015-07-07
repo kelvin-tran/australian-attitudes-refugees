@@ -211,8 +211,11 @@
 						})
 						.attr("d", path)
 						.on("click", clicked);
-					
-				console.log(aus);
+				
+				var response_values = Object.keys(rateById).map(function(key){
+    			return rateById[key];
+					});
+				console.log(response_values);
 						
 				var colors = d3.scale.quantize()
 					.domain(
