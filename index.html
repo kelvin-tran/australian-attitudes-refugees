@@ -175,7 +175,8 @@
           ;
       
       var path = d3.geo.path()
-          .projection(projection);
+          .projection(projection)
+          .pointRadius(1);
           
 			var zoom = d3.behavior.zoom()
 			    .translate(projection.translate())
