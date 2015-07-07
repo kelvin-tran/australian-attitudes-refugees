@@ -91,6 +91,11 @@
 			padding-right:5px;
 			padding-left:5px;
 		}
+		
+		.place,
+		.place-label {
+			fill: #444;
+		}
     
     </style>
   </head>
@@ -248,6 +253,27 @@
 						  return formats.percent(r[0]/100);
 						});
 			}
+			
+			d3.json("https://raw.githubusercontent.com/kelvin-tran/australian-attitudes-refugees/master/places.json", function(error, name_data) {
+			
+			svg.append("path")
+				.datum(topojson.feature(name_data, name_data.objects.places))
+					.attr("d", path)
+					.attr("class", "place");
+			
+			svg.selectAll(".place-label")
+				.data(topojson.feature(name_data, name_data.objects.places).features)
+				.enter().append("text")
+					.attr("class", "place-label")
+					.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
+					.attr("dy", ".35em")
+					.text(function(d) { return d.properties.name; });
+			
+			svg.selectAll(".place-label")
+					.attr("x", function(d) { return d.geometry.coordinates[0] > -133.25 ? 6 : -6; })
+					.style("text-anchor", function(d) { return d.geometry.coordinates[0] > -133.25 ? "start" : "end"; });
+			
+			});
 
 			function clicked(d) {
 				var centroid = path.centroid(d),
