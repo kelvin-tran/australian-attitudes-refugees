@@ -198,7 +198,7 @@
 					.defer(d3.json, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/t_aus_bound.json")
 					.defer(d3.csv, "https://raw.githubusercontent.com/kelvin-tran/immigration-electorate-views/master/chloro.csv", function(d) { 
 						rateById.set(d.id, +d.strongly_agree); 
-						response_values.push(d.strongly_agree);
+						response_values.push(+d.strongly_agree);
 					})
 					.await(ready);
 			
