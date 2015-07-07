@@ -211,6 +211,8 @@
 						})
 						.attr("d", path)
 						.on("click", clicked);
+					
+				console.log(function(d) { return rateById.get(d.id); });
 						
 				var colors = d3.scale.quantize()
 					.domain(
