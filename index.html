@@ -215,7 +215,10 @@
 				var colors = d3.scale.quantize()
 					.domain(
 					//	[0, 54.5]
-					d3.extent(d3.values(aus), function(d) { return rateById.get(d.id); })
+						d3.extent(d3.values(aus), function(d) {
+							console.log(rateById.get(d.id))
+							return rateById.get(d.id); 
+						})
 					)
 					.range(	[
 							"rgb(247,251,255)",
