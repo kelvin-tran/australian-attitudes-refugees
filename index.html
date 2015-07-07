@@ -233,9 +233,8 @@
 						.attr('class', 'key')
 						.style('border-top-color', String)
 						.text(function(d) {
-						  var r = colors.invertExtent(d) ;
-						  return r[0] + '%';
-						  //return formats.percent(r[0]);
+						  var r = colors.invertExtent(d);
+						  return formats.percent(r[0]/100);
 						});
 			}
 
