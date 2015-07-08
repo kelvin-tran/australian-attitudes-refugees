@@ -298,6 +298,7 @@
 				projection.translate(d3.event.translate).scale(d3.event.scale);
 				g.selectAll("path").attr("d", path);
 				g.selectAll(".place-label").attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
+				g.selectAll(".shadow").attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			}
 			
       d3.select(self.frameElement).style("height", height + "px");
