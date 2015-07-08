@@ -294,7 +294,7 @@
 				
 				g.selectAll(".place-label").transition()
 						.duration(700)
-						.attr("transform", function(d) { return "translate(" + 100 + "," + 100 ")"; });
+						.attr("transform", function(d) { return "translate(" + projection.translate() + ")"; });
 			}
 			
 			function zoomed() {
