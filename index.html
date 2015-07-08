@@ -35,27 +35,9 @@
       fill: none;
       stroke: #777;
     }
-    .land-boundary {
-      fill: #ccc;
-      fill-opacity: 0.8;
-      stroke: gray;
-      stroke-width: 1;
-    }
-    .div-boundary {
-      fill: none;
-      fill-opacity: 0.8;
-      stroke: gray;
-      stroke-width: 1;
-    }
 
 		.divisions {
 		  fill: none;
-		}
-		
-		.states {
-		  fill: none;
-		  stroke: #fff;
-		  stroke-linejoin: round;
 		}
 
 		.q0-9 { fill:rgb(247,252,240); }
@@ -102,6 +84,12 @@
 		  font-size: 10px;
 		  background-color: white;
 		  pointer-events: none;
+		}
+		
+		text.shadow {
+			stroke: white;
+			stroke-width: 2.5px;
+			opacity: 0.9;
 		}
     
     </style>
@@ -246,6 +234,7 @@
 						.attr("class", "place-label")
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
 						.attr("dy", ".35em")
+						.attr("class", "shadow")
 						.text(function(d) { return d.properties.name; });
 						
 				var colors = d3.scale.quantize()
