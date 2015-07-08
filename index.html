@@ -277,9 +277,7 @@
 
 			function clicked(d) {
 				var centroid = path.centroid(d),
-						translate = projection.translate(),
-						x = width / 2 - centroid[0],
-    				y = height / 2 - centroid[1];
+						translate = projection.translate();
 			
 				projection.translate([
 					translate[0] - centroid[0] + width / 2,
@@ -294,14 +292,13 @@
 				
 				g.selectAll(".place-label").transition()
 						.duration(700)
-						.data(topojson.feature(name_data, name_data.objects.places).features)
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			}
 			
 			function zoomed() {
 				projection.translate(d3.event.translate).scale(d3.event.scale);
 				g.selectAll("path").attr("d", path);
-				g.selectAll(".place-label").attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
+				g.selectAll(".place-label").translate(projection.translate());
 			}
 			
       d3.select(self.frameElement).style("height", height + "px");
