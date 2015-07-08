@@ -294,6 +294,7 @@
 				
 				g.selectAll(".place-label").transition()
 						.duration(700)
+						.data(topojson.feature(name_data, name_data.objects.places).features)
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			}
 			
