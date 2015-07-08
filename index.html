@@ -94,13 +94,13 @@
 		
 		.place,
 		.place-label {
-			background-color: white;
 			fill: #444;
 		}
 		
 		text {
 		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		  font-size: 10px;
+		  background-color: white;
 		  pointer-events: none;
 		}
     
@@ -292,7 +292,7 @@
 						.attr("d", path);
 				
 				g.selectAll(".place-label").transition()
-						.duration(700)
+						.duration(300)
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			}
 			
