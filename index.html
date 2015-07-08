@@ -289,10 +289,9 @@
 				zoom.translate(projection.translate());
 				
 				g.selectAll(".place-label")
-					.transition()
-						.duration(0)
-						.delay(700)
-						.ease('cubic')
+					//.transition()
+					//	.duration(700)
+					//	.ease('cubic')
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			
 				g.selectAll("path").transition()
