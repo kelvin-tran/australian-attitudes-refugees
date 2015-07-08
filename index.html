@@ -292,7 +292,7 @@
 				
 				g.selectAll(".place-label").transition()
 						.duration(700)
-						.attr("transform", function(d) { return "translate(" + projection.translate() + ")"; });
+						.attr("transform", function(d) { return "translate(" + d3.event.translate() + ")"; });
 			}
 			
 			function zoomed() {
