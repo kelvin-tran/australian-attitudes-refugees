@@ -292,7 +292,8 @@
 						.attr("d", path);
 				
 				g.selectAll(".place-label").transition()
-						.duration(300)
+						.duration(700)
+						.ease('cubic')
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			}
 			
