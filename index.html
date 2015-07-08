@@ -58,15 +58,15 @@
 		  stroke-linejoin: round;
 		}
 
-		.q0-9 { fill:rgb(247,251,255); }
-		.q1-9 { fill:rgb(222,235,247); }
-		.q2-9 { fill:rgb(198,219,239); }
-		.q3-9 { fill:rgb(158,202,225); }
-		.q4-9 { fill:rgb(107,174,214); }
-		.q5-9 { fill:rgb(66,146,198); }
-		.q6-9 { fill:rgb(33,113,181); }
-		.q7-9 { fill:rgb(8,81,156); }
-		.q8-9 { fill:rgb(8,48,107); }
+		.q0-9 { fill:rgb(247,252,240); }
+		.q1-9 { fill:rgb(224,243,219); }
+		.q2-9 { fill:rgb(204,235,197); }
+		.q3-9 { fill:rgb(168,221,181); }
+		.q4-9 { fill:rgb(123,204,196); }
+		.q5-9 { fill:rgb(78,179,211); }
+		.q6-9 { fill:rgb(43,140,190); }
+		.q7-9 { fill:rgb(8,104,172); }
+		.q8-9 { fill:rgb(8,64,129); }
 		
 		#legend {
 			padding: 1.5em 0 0 1.5em;
@@ -253,7 +253,7 @@
 						d3.min(response_values),
 						d3.max(response_values)
 					])
-					.range(colorbrewer.GnBu[9]);
+					.range(['rgb(247,252,240)','rgb(224,243,219)','rgb(204,235,197)','rgb(168,221,181)','rgb(123,204,196)','rgb(78,179,211)','rgb(43,140,190)','rgb(8,104,172)','rgb(8,64,129)']);
 				
 				var keys = legend.selectAll('li.key')
 						.data(colors.range());
