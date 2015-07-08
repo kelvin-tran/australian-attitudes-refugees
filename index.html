@@ -292,7 +292,7 @@
 				
 				g.selectAll(".place-label").transition()
 						.duration(700)
-						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")";
+						.attr("transform", function(d) { return "translate(" + projection.translate() + ")";
 			}
 			
 			function zoomed() {
