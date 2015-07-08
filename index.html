@@ -290,12 +290,12 @@
 				
 				g.selectAll(".place-label")
 					.transition()
-						.duration(700)
+						.duration(400)
 						.ease('cubic')
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			
 				g.selectAll("path").transition()
-						.duration(700)
+						.duration(400)
 						.ease('cubic')
 						.attr("d", path);
 				
