@@ -138,6 +138,7 @@
         <em>A map of people wanting to 'turn back boats'.  Click to center and scroll (slowly) to zoom.</em>
         <br><br>
         <p>Responses from Lingiari (NT) and Flynn (Queensland) top the list at around 54 per cent, while Melbourne (Victoria) and Wills (covering the inner north-west of Melbourne) are at the other end with only about 4 percent strongly agreeing with the statement.</p>
+        <p>The process of creating the map was roughly (<a href="http://www.gdal.org/ogr2ogr.html">ogr2ogr</a> → <a href="https://github.com/mbostock/topojson">topoJSON</a>) + MS Excel + <a href="http://d3js.org/">D3.js</a>.  See more of my work (map and data visualisation related) <a href="http://kelvin-tran.github.io/">here</a>.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/kelvin-tran">kelvin-tran</a></p>
@@ -292,9 +293,9 @@
 						.attr("d", path);
 				
 				g.selectAll(".place-label")
-					//.transition()
-						//.duration(700)
-						//.ease('cubic')
+					.transition()
+						.duration(700)
+						.ease('cubic')
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			}
 			
