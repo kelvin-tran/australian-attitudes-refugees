@@ -277,7 +277,9 @@
 
 			function clicked(d) {
 				var centroid = path.centroid(d),
-						translate = projection.translate();
+						translate = projection.translate(),
+						x = width / 2 - centroid[0],
+    				y = height / 2 - centroid[1];
 			
 				projection.translate([
 					translate[0] - centroid[0] + width / 2,
@@ -292,7 +294,7 @@
 				
 				g.selectAll(".place-label").transition()
 						.duration(700)
-						.attr("transform", function(d) { return "translate(" + translate + ")"; });
+						.attr("transform", function(d) { return "translate(" + x + "," + y + ")"; });
 			}
 			
 			function zoomed() {
