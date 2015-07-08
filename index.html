@@ -291,9 +291,10 @@
 						.duration(700)
 						.attr("d", path);
 				
-				g.selectAll(".place-label").transition()
-						.duration(700)
-						.ease('cubic')
+				g.selectAll(".place-label")
+					//.transition()
+						//.duration(700)
+						//.ease('cubic')
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
 			}
 			
