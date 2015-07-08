@@ -290,6 +290,7 @@
 				
 				g.selectAll(".place-label")
 					.transition()
+						.duration(0)
 						.delay(700)
 						.ease('cubic')
 						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; });
