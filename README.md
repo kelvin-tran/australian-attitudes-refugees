@@ -19,6 +19,9 @@ topojson \
   --id-property SORTNAME \
   -- electorate_bounds.json
 ```
+
+Note: the -s flag is used to specify the amount of Visvalingam simplification.  Read more about it by searching topojson simplify.
+
 Then obtain the data from the AES ADA archive, sorting by electoral division.
 
 For further help, see (http://bost.ocks.org/mike/map/, http://bost.ocks.org/mike/simplify/, http://bl.ocks.org/mbostock/4060606)
